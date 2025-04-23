@@ -27,12 +27,12 @@ def random_recipes(num_recipes):
 @app.errorhandler(404)
 def page_not_found(e):
     '''This function handles 404 errors, which are page not found errors.'''
-    return "Sorry, wrong format. Do this instead: the_url/random/number_of_recipes"
+    return f"Sorry, wrong format. Do this instead: the_url/random/number_of_recipes {str(e)}"
 
 @app.errorhandler(500)
 def python_bug(e):
     '''This function handles 500 errors, which are internal server errors.'''
-    return "Eek, a bug!"
+    return f"Eek, a bug! {str(e)}"
 
 if __name__ == '__main__':
     app.run()
