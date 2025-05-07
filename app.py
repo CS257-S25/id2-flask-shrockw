@@ -22,17 +22,12 @@ def random_recipes(num_recipes):
     # Call the function to get random recipes here
     recipes = random_cl(num_recipes)
     # return str(recipes)
-    return f"Returning {num_recipes} random recipes.\n {recipes}"
+    return f"Returning {num_recipes} random recipes...<br><br> {recipes}"
 
 @app.errorhandler(404)
 def page_not_found(e):
     '''This function handles 404 errors, which are page not found errors.'''
     return f"Sorry, wrong format. Do this instead: the_url/random/number_of_recipes {str(e)}"
-
-@app.errorhandler(500)
-def python_bug(e):
-    '''This function handles 500 errors, which are internal server errors.'''
-    return f"Eek, a bug! {str(e)}"
 
 if __name__ == '__main__':
     app.run()

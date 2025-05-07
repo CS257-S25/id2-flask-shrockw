@@ -22,5 +22,33 @@ class TestFlaskRoutes(unittest.TestCase):
         random.seed(32719)
         response = self.client.get('/random/1')
         self.assertIn(
-        b"10: Put the chipotle peppers and adobo sauce in a small food processor",
+        b"Hot Pimento Cheese Dip",
+        response.data)
+
+    def test_random_route_invalid_large(self):
+        '''Test the random route with an invalid number.'''
+        response = self.client.get('/random/11')
+        self.assertIn(
+        b"Please enter a number between 1 and 10.",
+        response.data)
+
+    def test_random_route_invalid_small(self):
+        '''Test the random route with an invalid number.'''
+        response = self.client.get('/random/0')
+        self.assertIn(
+        b"Please enter a number between 1 and 10.",
+        response.data)
+
+    def test_random_route_wrong_format(self):
+        '''Test the random route with a wrong format.'''
+        response = self.client.get('/random/abc')
+        self.assertIn(
+        b"Sorry, wrong format. Do this instead: the_url/random/number_of_recipes",
+        response.data)
+
+    def test_random_route_wrong_url(self):
+        '''Test the random route with a wrong format.'''
+        response = self.client.get('/rando')
+        self.assertIn(
+        b"Sorry, wrong format. Do this instead: the_url/random/number_of_recipes",
         response.data)

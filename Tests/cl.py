@@ -33,5 +33,5 @@ def random_cl(num):
     random_recipes = get_random_recipes(recipe_data, num)
     output = ""
     for recipe in random_recipes:
-        output += f"{recipe[0]}: {recipe[2]}\n"
+        output += f"{recipe[1]}: {recipe[2]}<br><br>"
     return output
